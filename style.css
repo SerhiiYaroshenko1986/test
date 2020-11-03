@@ -1,0 +1,18 @@
+.container {
+    min-height: 500px;
+    display: grid;
+    place-items: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status {
+    text-decoration: line-through;
+}
