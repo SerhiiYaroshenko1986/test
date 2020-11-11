@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="form-wrap">
+        <!-- <div class="logo">
+            <img src="../assets/img/logo_transparent.png" alt="logo" srcset="" />
+        </div> -->
+        <p class="form-title">Authorization</p>
+        <form [formGroup]="loginForm" novalidate (submit)="onSubmit($event)">
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Login </mat-label>
+                <input formControlName="userName" matInput type="text" />
+                <span matPrefix class="material-icons"> login </span>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+                <mat-label> Password </mat-label>
+                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" />
+                <span matPrefix class="material-icons"> vpn_key </span>
+                <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{
+                        hide ? 'visibility_off' : 'visibility'
+                    }}</mat-icon>
+                </button> -->
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">
+                Log In
+            </button>
+        </form>
+    </div>
+</div>
