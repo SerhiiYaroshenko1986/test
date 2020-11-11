@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     }
     onSubmit(event) {
         event.preventDefault()
-        let formValue = this.loginForm.value
+        const formValue = this.loginForm.value
         this.userName = formValue.userName
         this.password = formValue.password
         console.log(typeof formValue.userName)

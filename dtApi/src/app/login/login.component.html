@@ -14,11 +14,11 @@
                 <mat-label> Password </mat-label>
                 <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" />
                 <span matPrefix class="material-icons"> vpn_key </span>
-                <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <span class="form-showPassword" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{
                         hide ? 'visibility_off' : 'visibility'
                     }}</mat-icon>
-                </button> -->
+                </span>
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit">
                 Log In
