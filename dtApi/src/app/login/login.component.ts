@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { LoginService } from './services/login.service'
+import { AuthService } from './services/auth.service'
 import { FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { trigger, state, style, animate, transition } from '@angular/animations'
-import { loginFrom } from './interfaces/interfaces'
+import { trigger, style, animate, transition } from '@angular/animations'
+import { loginForm } from './interfaces/interfaces'
 
 @Component({
     animations: [
@@ -23,14 +23,14 @@ import { loginFrom } from './interfaces/interfaces'
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    hide: boolean = true
-    badRequest: boolean = false
+    hide = true
+    badRequest = false
     errorMessage: string
     loginForm: FormGroup
     private userName: string
     private password: string
 
-    constructor(private requestService: LoginService, private router: Router) {
+    constructor(private request: AuthService, private router: Router) {
         this._createForm()
     }
     private _createForm() {
@@ -41,28 +41,29 @@ export class LoginComponent implements OnInit {
     }
     onSubmit(event) {
         event.preventDefault()
-        const formValue: loginFrom = this.loginForm.value
+        const formValue: loginForm = this.loginForm.value
         this.userName = formValue.userName
         this.password = formValue.password
         this.loginForm.reset()
-        this.requestService
-            .userLoginRequest(this.userName, this.password)
-            .subscribe(
-                (response) => {
-                    // if (response.username === 'admin') {
-                    //     this.router.navigate(['/admin/dashboard'])
-                    // }
-                    // if (response.username === 'student') {
-                    //     this.router.navigate(['/student'])
-                    // }
-                    // console.log(response)
-                },
-                (err) => {
-                    this.badRequest = true
-                    this.errorMessage = err.error.response
-                    this.removeErrorMessage()
-                }
-            )
+        this.request.loginRequest(this.userName, this.password).subscribe(
+            (response) => {
+                // if (response.username === 'admin') {
+                //     this.router.navigate(['/admin/dashboard'])
+                // }
+                // if (response.username === 'student') {
+                //     this.router.navigate(['/student'])
+                // }
+                console.log(response)
+            },
+            (err) => {
+                this.handlerError(err)
+            }
+        )
+    }
+    handlerError(err) {
+        this.badRequest = true
+        this.errorMessage = err.error.response
+        this.removeErrorMessage()
     }
     removeErrorMessage() {
         setTimeout(() => {
