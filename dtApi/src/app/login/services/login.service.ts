@@ -5,9 +5,9 @@ import { Observable } from 'rxjs'
 @Injectable({
     providedIn: 'root',
 })
-export class RequestService {
+export class LoginService {
     constructor(private http: HttpClient) {}
-    getData(userName, password): Observable<any> {
+    userLoginRequest(userName, password): Observable<any> {
         const url = 'https://dtapi.if.ua/api/login'
         const body = {
             username: userName,

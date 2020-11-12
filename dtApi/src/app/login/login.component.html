@@ -7,22 +7,25 @@
         <form [formGroup]="loginForm" novalidate (submit)="onSubmit($event)">
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label> Login </mat-label>
-                <input formControlName="userName" matInput type="text" />
+                <input formControlName="userName" matInput type="text" required />
                 <span matPrefix class="material-icons"> login </span>
             </mat-form-field>
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label> Password </mat-label>
-                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" />
+                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required />
                 <span matPrefix class="material-icons"> vpn_key </span>
                 <span class="form-showPassword" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{
-                        hide ? 'visibility_off' : 'visibility'
-                    }}</mat-icon>
+                    <mat-icon
+                        >{{ hide ? 'visibility_off' : 'visibility' }}
+                    </mat-icon>
                 </span>
             </mat-form-field>
             <button mat-raised-button color="primary" type="submit">
                 Log In
             </button>
         </form>
+    </div>
+    <div class="form-request-error" *ngIf="badRequest" [@inOutAnimation]>
+        <p>{{ errorMessage }}</p>
     </div>
 </div>

@@ -1,4 +1,5 @@
 .container {
+    position: relative;
     height: 100%;
     display: grid;
     place-items: center;
@@ -42,5 +43,23 @@
     }
     .form-showPassword {
         cursor: pointer;
+    }
+}
+
+.form-request-error {
+    box-shadow: 0 0 10px rgba(#000000, 0.7);
+    width: 300px;
+    border: 1px solid rgba(#000000, 0.7);
+    border-radius: 3px;
+    position: absolute;
+    bottom: 14%;
+    left: calc(50%-150px);
+    text-align: center;
+    background-color: #ffffff !important;
+    p {
+        background-color: #ffffff !important;
+        color: red;
+        padding: 10px 3px;
+        margin: 0;
     }
 }
